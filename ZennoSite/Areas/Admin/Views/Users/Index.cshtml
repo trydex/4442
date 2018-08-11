@@ -1,0 +1,38 @@
+@model IEnumerable<UserViewModel>
+@{
+    ViewBag.Title = "Управление пользователями";
+}
+
+<a asp-action="Create" class="btn btn-primary">Добавить</a>
+<table class="data-table"
+       data-page-length="25">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Роли</th>
+        <th>Ник</th>
+        <th>Email</th>
+        <th>Управление</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var vm in Model)
+    {
+        var user = vm.User;
+        var roles = string.Join(", ", vm.UserRoles);
+        <tr>
+            <td>@user.Id</td>
+            <td>@roles</td>
+            <td>@user.Nickname</td>
+            <td>@user.Email</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@user.Id" class="btn btn-warning">Редактировать</a>
+                <form asp-action="Delete" asp-route-id="@user.Id" method="post">
+                    <button type="submit" class="btn btn-danger">Удалить</button>
+                </form>
+                <a class="btn btn-sm btn-primary" asp-action="ChangePassword" asp-route-id="@user.Id">Сменить пароль</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

@@ -1,0 +1,69 @@
+﻿@model ZennoSite.Areas.Admin.Models.Client
+
+@{
+    ViewData["Title"] = "Детали";
+}
+
+<h2>Детали</h2>
+
+<div>
+    <h4>Клиент</h4>
+    <hr/>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UtmSource)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UtmSource)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AdditionDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AdditionDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsBanned)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsBanned)
+        </dd>
+        <dt>
+            Продукты:
+        </dt>
+        <dd>
+            <pre>@string.Join(Environment.NewLine, Model.Licenses.Select(l => new {Ключ = l.Key, Продукт = l.Product.Title, Активирован = l.ActivationDate}).ToList())</pre></dd>
+        <dt>
+            IP адреса:
+        </dt>
+        <dd>
+            <pre>@string.Join(Environment.NewLine, new HashSet<string>(Model.Licenses.SelectMany(l => l.Sessions).Select(s => s.Address.Address).ToList()))</pre>
+        </dd>
+        <dt>
+            Железо:
+        </dt>
+        <dd>
+            <pre>@string.Join(Environment.NewLine, new HashSet<string>(Model.Licenses.SelectMany(l => l.Sessions).Select(s => s.Hardware.Value).ToList()))</pre>
+        </dd>
+        <dt>
+            Последние 10 сессий:
+        </dt>
+        <dd>
+            <pre>@string.Join(Environment.NewLine, Model.Licenses.SelectMany(l => l.Sessions)
+             .OrderByDescending(s => s.Date)
+             .Select(s => new {Дата = s.Date, IP = s.Address.Address, Лицензия = s.License.Key, Железо = s.Hardware.Value })
+             .ToList())
+            </pre>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a> |
+    <a asp-action="Index">Назад к списку</a>
+</div>

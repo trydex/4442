@@ -1,0 +1,51 @@
+﻿@model IssueLicenseViewModel
+@{
+    ViewBag.Title = "Выписать лицензию";
+}
+
+<form asp-action="IssueLicense" method="post">
+    <div class="form-group">
+        <label asp-for="AllProducts" class="control-label"></label>
+        <select asp-items="@ViewBag.Products" asp-for="ProductId" class="form-control">
+            <option selected>Выберите продукт</option>
+        </select>  
+        <span asp-validation-for="ProductId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Users" class="control-label"></label>
+        <select asp-items="@ViewBag.Users" asp-for="SelectedUsers" multiple="multiple" class="form-control">
+        </select>
+        <span asp-validation-for="SelectedUsers" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Price" class="control-label"></label>
+        <input asp-for="Price" class="form-control" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="HardwaresLimit" class="control-label"></label>
+        <input asp-for="HardwaresLimit" class="form-control" value="1" />
+        <span asp-validation-for="HardwaresLimit" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <div class="checkbox">
+            <label>
+                <input asp-for="IsBanned" /> @Html.DisplayNameFor(model => model.IsBanned)
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="ExpirationDate" class="control-label"></label>
+        <input asp-for="ExpirationDate" class="form-control" />
+        <span asp-validation-for="ExpirationDate" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Выписать лицензии</button>
+</form>
+
+<div>
+    <a asp-action="Index">Назад к списку</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

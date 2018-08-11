@@ -1,0 +1,55 @@
+﻿@model IEnumerable<AdminSession>
+
+@{
+    ViewData["Title"] = "Админ сессии";
+}
+
+<h2>Админ сессии</h2>
+
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Login)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Password)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                <a asp-controller="LicenseSessions" asp-action="Index" asp-route-ip="@item.Address.Address">
+                    @Html.DisplayFor(modelItem => item.Address.Address)
+                </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Login)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Детали</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,102 @@
+﻿@model IEnumerable<ZennoSite.Areas.Admin.Models.License>
+
+@{
+    ViewData["Title"] = "Управление лицензиями";
+}
+
+<h2>Управление лицензиями</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-secondary">Добавить</a>
+    <a asp-action="IssueLicense" class="btn btn-secondary">Выписать лицензии</a>
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Client)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Key)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HardwaresLimit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsBanned)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ActivationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpirationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastUse)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                <a asp-controller="LicenseSessions" asp-action="Index" asp-route-product="@item.Product.Title">
+                    @Html.DisplayFor(modelItem => item.Product.Title)
+                </a>
+            </td>
+            <td>
+                <a asp-controller="LicenseSessions" asp-action="Index" asp-route-nickname="@item.Client.Name">
+                    @Html.DisplayFor(modelItem => item.Client.Name)
+                </a>
+            </td>
+            <td>
+                <a asp-controller="LicenseSessions" asp-action="Index" asp-route-license="@item.Key">
+                    @Html.DisplayFor(modelItem => item.Key)
+                </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HardwaresLimit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsBanned)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActivationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpirationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastUse)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Редактировать</a>
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-secondary">Детали</a>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Удалить</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

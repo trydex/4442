@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ZennoSite.Areas.Admin.Models.Hardware>
+
+@{
+    ViewData["Title"] = "Железо";
+}
+
+<h2>Железо</h2>
+
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Value)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsBanned)
+                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Client)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <a asp-controller="LicenseSessions" asp-action="Index" asp-route-hardware="@item.Value">
+                    @Html.DisplayFor(modelItem => item.Value)
+                </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsBanned)
+            </td>
+            <td>
+                <a asp-controller="LicenseSessions" asp-action="Index" asp-route-nickname="@item.Client.Name">
+                    @Html.DisplayFor(modelItem => item.Client.Name)
+                </a>
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Детали</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

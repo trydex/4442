@@ -1,0 +1,108 @@
+﻿@model IEnumerable<ZennoSite.Areas.Admin.Models.LicenseSession>
+
+@{
+    ViewData["Title"] = "Сессии лицензий";
+}
+
+<h2>Сессии лицензий</h2>
+<form asp-action="Index" method="get" class="p-3">
+    <div class="row">
+        <div class="form-group">
+            <input type="text" name="license" class="form-control" placeholder="Ключ лицензии" />
+        </div>
+        <div class="form-group">
+            <input type="text" name="product" class="form-control" placeholder="Название продукта" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            <input type="text" name="nickname" class="form-control" placeholder="Ник"/>
+        </div>
+        <div class="form-group">
+            <input type="text" name="ip" class="form-control" placeholder="IP адрес"/>
+        </div>
+        <div class="form-group">
+            <input type="text" name="hardware" class="form-control" placeholder="Железо"/>
+        </div>
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-secondary">Фильтр</button>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.License.Product)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.License.Client)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.License)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hardware)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Query)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                <a asp-action="Index" asp-route-product="@item?.License?.Product?.Title">
+                    @Html.DisplayFor(modelItem => item.License.Product.Title)
+                </a>
+            </td>
+            <td>
+                <a asp-action="Index" asp-route-nickname="@item.License?.Client?.Name">
+                    @Html.DisplayFor(modelItem => item.License.Client.Name)
+                </a>
+            </td>
+            <td>
+                <a asp-action="Index" asp-route-license="@item.License?.Key">
+                    @Html.DisplayFor(modelItem => item.License.Key)
+                </a>
+            </td>
+            <td>
+                <a asp-action="Index" asp-route-hardware="@item.Hardware?.Value">
+                    @Html.DisplayFor(modelItem => item.Hardware.Value)
+                </a>
+            </td>
+            <td>
+                <a asp-action="Index" asp-route-ip="@item.Address.Address">
+                    @Html.DisplayFor(modelItem => item.Address.Address)
+                </a>
+            </td>
+            <td>
+                <div class="cut-text">
+                    @Html.DisplayFor(modelItem => item.Query)
+                </div>
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">Детали</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

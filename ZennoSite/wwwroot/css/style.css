@@ -1,0 +1,27 @@
+﻿.main-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.main-content {
+    height: 100%;
+}
+
+.main-menu {
+    max-width: 250px
+}
+
+.content-section {
+    padding: 10px;
+}
+
+.cut-text { 
+    text-overflow: ellipsis;
+    overflow: hidden; 
+    width: 400px; 
+    height: 1.2em; 
+    white-space: nowrap;
+}

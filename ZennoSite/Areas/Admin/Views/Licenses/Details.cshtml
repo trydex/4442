@@ -1,0 +1,78 @@
+﻿@model ZennoSite.Areas.Admin.Models.License
+
+@{
+    ViewData["Title"] = "Детали";
+}
+
+<h2>Детали</h2>
+
+<div>
+    <h4>Лицензии</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Key)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Key)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HardwaresLimit)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HardwaresLimit)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsBanned)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsBanned)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreationDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ActivationDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ActivationDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ExpirationDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ExpirationDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LastUse)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastUse)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Client)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Client.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Product)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Product.Title)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a> |
+    <a asp-action="Index">Назад к списку</a>
+</div>

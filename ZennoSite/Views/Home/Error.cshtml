@@ -1,0 +1,35 @@
+﻿@{
+    Layout = null;
+}
+
+@model string
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Error</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <style>
+        body {
+            background: black;
+            color: white;
+            font-size: 72px;
+            font-family: 'Roboto','Times New Roman', sans-serif;
+            text-transform: uppercase;
+            user-select: none;
+        }
+
+        div {
+            padding-top: 200px;
+            vertical-align: middle;
+            text-align: center;
+        }
+    </style>
+    <div>
+        ERROR @Model
+    </div>
+</body>
+</html>

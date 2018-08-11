@@ -1,0 +1,28 @@
+@model EditUserViewModel
+@{
+    ViewBag.Title = "Редактирование пользователя";
+}
+
+<form asp-action="EditUser" method="post">
+    <input type="hidden" value="@Model.Id" name="id"></input>
+    <div class="form-group">
+        <label for="Login" class="form-check-label">Логин:</label>
+        <input type="text" class="form-check-input" id="Login" name="Login" value="@Model.Login"/>
+    </div>
+    <div class="form-group">
+        <label for="Nickname" class="form-check-label">Ник:</label>
+        <input type="text" class="form-check-input" id="Nickname" name="Nickname" value="@Model.Nickname"/>
+    </div>
+    <div class="form-group">
+        <label>Роли</label>
+        @foreach (var role in Model.AllRoles)
+        {
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" name="roles" value="@role.Name" id="@role.Name"
+                       @(Model.Roles.Contains(role.Name) ? "checked=\"checked\"" : "")/>
+                <label for="@role.Name" class="form-check-label">@role.Name</label>
+            </div>
+        }
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+</form>

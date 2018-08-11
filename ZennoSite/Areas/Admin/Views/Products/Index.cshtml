@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ZennoSite.Areas.Admin.Models.Product>
+
+@{
+    ViewData["Title"] = "Продукты";
+}
+
+<h2>Управление продуктами</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-secondary">Добавить</a>
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CanBuy)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+@foreach (var product in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => product.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => product.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => product.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => product.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => product.CanBuy)
+        </td>
+        <td>
+            <a asp-action="Edit" asp-route-id="@product.Id" class="btn btn-warning">Редактировать</a>
+            <a asp-action="Details" asp-route-id="@product.Id" class="btn btn-secondary">Детали</a>
+            <a asp-action="Delete" asp-route-id="@product.Id" class="btn btn-danger">Удалить</a>
+        </td>
+    </tr>
+}
+    </tbody>
+</table>
